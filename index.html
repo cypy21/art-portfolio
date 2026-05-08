@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Creative Developer</title>
+  <meta name="description" content="Modern portfolio website for GitHub Pages" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #050816;
+      --bg-light: #f8fafc;
+    }
+    
+    * { font-family: 'Inter', sans-serif; }
+
+    body {
+      background: var(--bg-dark);
+      color: white;
+      transition: background-color 0.5s ease, color 0.5s ease;
+      overflow-x: hidden;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    body.light-mode {
+      background: var(--bg-light);
+      color: #1e293b;
+    }
+    body.light-mode .glass {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+    }
+    body.light-mode .text-gray-300 { color: #475569; }
+    body.light-mode .text-gray-400 { color: #64748b; }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    .floating { animation: float 6s ease-in-out infinite; }
+
+    /* Mobile Nav Animation */
+    #mobileMenu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+    #mobileMenu.open {
+      transform: translateX(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="bg-3d" class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div class="absolute top-[-10%] left-[-10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-purple-600/20 rounded-full blur-[80px] md:blur-[120px]"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-cyan-600/20 rounded-full blur-[80px] md:blur-[120px]"></div>
+  </div>
+
+  <header class="fixed top-0 left-0 w-full z-50 glass">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <h1 class="text-xl md:text-2xl font-black tracking-tighter gradient-text cursor-pointer">YOURNAME.</h1>
+
+      <nav class="hidden md:flex gap-8 text-sm font-medium items-center">
+        <a href="#about" class="hover:text-purple-400 transition">About</a>
+        <a href="#projects" class="hover:text-purple-400 transition">Projects</a>
+        <a href="#skills" class="hover:text-purple-400 transition">Skills</a>
+        <a href="#contact" class="hover:text-purple-400 transition">Contact</a>
+        <button onclick="toggleTheme()" class="p-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition">
+          <span id="themeIcon">🌙</span>
+        </button>
+      </nav>
+
+      <div class="flex items-center gap-4 md:hidden">
+        <button onclick="toggleTheme()" class="p-2 rounded-full bg-white/5 border border-white/10">
+          <span id="themeIconMobile">🌙</span>
+        </button>
+        <button id="menuOpen" class="text-2xl">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="mobileMenu" class="fixed inset-0 z-[60] bg-[#050816] flex flex-col p-8 md:hidden">
+    <div class="flex justify-end">
+      <button id="menuClose" class="text-4xl">&times;</button>
+    </div>
+    <nav class="flex flex-col gap-8 text-3xl font-bold mt-12">
+      <a href="#about" onclick="closeMenu()">About</a>
+      <a href="#projects" onclick="closeMenu()">Projects</a>
+      <a href="#skills" onclick="closeMenu()">Skills</a>
+      <a href="#contact" onclick="closeMenu()">Contact</a>
+    </nav>
+  </div>
+
+  <section class="min-h-screen flex items-center px-6 pt-20">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center w-full">
+      <div class="reveal active">
+        <span class="inline-block px-4 py-1 rounded-full border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6">
+          Available for Hire
+        </span>
+        <h2 class="text-5xl md:text-8xl font-black leading-tight md:leading-none mb-6">
+          Crafting <br/>
+          <span class="gradient-text">Digital Magic.</span>
+        </h2>
+        <p class="text-gray-300 text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
+          Full-stack developer building exceptional digital experiences that are fast and visually stunning.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#projects" class="text-center px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-cyan-500 font-bold shadow-lg shadow-purple-500/20 hover:scale-105 transition">
+            View My Work
+          </a>
+          <a href="#contact" class="text-center px-8 py-4 rounded-full border border-white/20 hover:bg-white/5 transition font-bold">
+            Let's Talk
+          </a>
+        </div>
+      </div>
+
+      <div class="hidden md:flex justify-end reveal active">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 blur-3xl opacity-20 animate-pulse"></div>
+          <div class="w-64 h-64 md:w-96 md:h-96 rounded-3xl glass flex items-center justify-center text-9xl floating relative z-10">
+            🚀
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="py-20 md:py-32 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+        <div class="reveal">
+          <p class="text-cyan-400 font-bold tracking-widest uppercase text-sm mb-2">Portfolio</p>
+          <h3 class="text-4xl md:text-5xl font-black">Selected Projects</h3>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="project-card reveal glass rounded-3xl overflow-hidden p-4 group">
+          <div class="h-48 rounded-2xl bg-gradient-to-br from-indigo-900 to-purple-800 mb-6 relative overflow-hidden">
+             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+             <div class="flex items-center justify-center h-full text-4xl">💻</div>
+          </div>
+          <h4 class="text-2xl font-bold mb-2">AI Insights Engine</h4>
+          <p class="text-gray-400 mb-6">A predictive analytics dashboard using OpenAI APIs.</p>
+          <div class="flex gap-3">
+            <span class="text-xs font-bold px-3 py-1 bg-white/5 rounded-full">React</span>
+            <span class="text-xs font-bold px-3 py-1 bg-white/5 rounded-full">Tailwind</span>
+          </div>
+        </div>
+        </div>
+    </div>
+  </section>
+
+  <a href="https://wa.me/1234567890" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center group">
+    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.417-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.305 1.652zm6.599-3.835c1.516.899 3.3 1.374 5.123 1.375 5.513 0 9.999-4.486 10.001-9.998.001-2.671-1.041-5.181-2.934-7.074-1.893-1.894-4.403-2.933-7.075-2.934-5.515 0-10.002 4.487-10.005 9.999-.001 1.83.499 3.615 1.447 5.174l-.967 3.535 3.61-.947zm11.367-7.61c-.312-.156-1.846-.91-2.133-1.014-.286-.105-.495-.156-.704.156-.21.312-.802 1.014-.984 1.222-.182.208-.363.234-.676.078-.312-.156-1.316-.484-2.508-1.548-.926-.827-1.551-1.848-1.733-2.16-.182-.312-.019-.481.137-.636.141-.14.312-.364.468-.546.156-.182.208-.312.312-.52.104-.208.052-.39-.026-.546-.078-.156-.704-1.693-.963-2.315-.253-.604-.51-.522-.704-.532-.182-.01-.39-.012-.598-.012s-.546.078-.832.39c-.286.312-1.092 1.066-1.092 2.6s1.118 3.016 1.274 3.224c.156.208 2.199 3.359 5.328 4.71.744.322 1.325.514 1.777.657.747.237 1.427.203 1.965.123.6-.089 1.847-.754 2.107-1.482.26-.728.26-1.352.182-1.482-.078-.13-.286-.208-.598-.364z"/></svg>
+    <span class="absolute right-full mr-4 bg-white text-black px-4 py-2 rounded-lg text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Chat with me!</span>
+  </a>
+
+  <section id="contact" class="py-20 md:py-32 px-6">
+    <div class="max-w-4xl mx-auto reveal">
+      <div class="glass rounded-[2rem] md:rounded-[3rem] p-8 md:p-20 text-center">
+        <h3 class="text-4xl md:text-6xl font-black mb-8">Let's work together.</h3>
+        <a href="mailto:hello@example.com" class="inline-block px-10 py-5 rounded-full bg-white text-black font-black text-lg hover:bg-cyan-400 transition-colors">
+          Send an Email
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-12 text-center border-t border-white/5">
+    <p class="text-gray-500 font-medium">© 2026 Your Name.</p>
+  </footer>
+
+  <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOpen = document.getElementById('menuOpen');
+    const menuClose = document.getElementById('menuClose');
+    const body = document.body;
+
+    // Theme Toggle Logic
+    function toggleTheme() {
+      body.classList.toggle('light-mode');
+      const isLight = body.classList.contains('light-mode');
+      const icon = isLight ? '☀️' : '🌙';
+      document.getElementById('themeIcon').innerHTML = icon;
+      document.getElementById('themeIconMobile').innerHTML = icon;
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    }
+
+    // Mobile Menu Logic
+    menuOpen.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      body.style.overflow = 'hidden';
+    });
+
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      body.style.overflow = 'auto';
+    }
+    menuClose.addEventListener('click', closeMenu);
+
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
